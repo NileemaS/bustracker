@@ -1,0 +1,157 @@
+<html>
+<head>
+<meta charset=utf-8 />
+
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</link>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
+<script src = "https://cdn.jsdelivr.net/gh/NileemaS/profile/profileHeader.js" type = "application/javascript" defer></script>    
+<script src = "https://cdn.jsdelivr.net/gh/NileemaS/profile/profileFooter.js" type = "application/javascript" defer></script> 
+  
+<link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+<link rel = "stylesheet" href = "./styles.css">
+<script src= "https://cdn.jsdelivr.net/gh/NileemaS/profile/search.js" type = "application/javascript"></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/
+MarkerCluster.css' rel='stylesheet' />
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/
+MarkerCluster.Default.css' rel='stylesheet' />
+<!-- Boston Route 1 data. -->
+<script src="mbtaBusData.js"></script> 
+<script src="stopnames.js"></script>   
+<script src="mapanimation.js"></script>
+<script src="set_busstop_markers.js"></script>
+
+<title> Bus Tracker </title>   
+
+</head>
+
+<body>
+	<div>
+		<header-comp class="header"> </header-comp> 
+	</div>
+	   
+	<div class = "main">
+		<div id = "leftside" class = "divleft"> 
+			<div id="grad1">
+				<span class="infoheader" style="color: #0ac2f0;">More to Know</span>
+			
+				<ul class="leftul">
+					<li class="leftli"><a href="#"> How to Use </a></li>
+					<li class="leftli"><a href="../profile/index.html"> Home </a></li>
+					<li class="leftli"><a href="../bustracker/README.md"> GitHub ReadMe </a></li>
+					<li class="leftli"><a href="../bustracker/LICENSE"> License </a></li>
+					<li class="leftli"><a href="../profile/index.html"> Contact </a></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div  id = "center" class = "divcenter">
+
+			<div id='map' class="map"></div>
+
+			<div class="map-overlay top">
+				<button class="mapbutton" style="margin-left: 40px;">
+					Bus Tracker between MIT and Harvard</button>
+			
+				<button class="mapbutton" onclick="togglescreen();">
+					<span class="glyphicon glyphicon-resize-full"></span>Expand/ Reset Map 
+				</button>				
+				<button class="mapbutton" onclick="doFullScreen();">
+					<span class="glyphicon glyphicon-fullscreen"></span> Fullscreen  
+				</button>				
+			</div>	
+				
+		</div>
+		<div id = "rightside" class = "divright"> AD: 
+			<div><img src = "https://cdn.jsdelivr.net/gh/NileemaS/profile/doll.jpg" alt="Doll Image" class="adsize"></div>
+			<div> <img src = "https://cdn.jsdelivr.net/gh/NileemaS/profile/ballarrangement.jpg" alt="Ball Arrangement" class="adsize"></div>
+			<div><img src = "https://cdn.jsdelivr.net/gh/NileemaS/profile/qrcode.jpeg" alt = "QR Code" class="adsize"></div>
+			<div><img src = "https://cdn.jsdelivr.net/gh/NileemaS/profile/frenchie.jpg" alt = "Frenchie" class="adsize"></div>
+		</div>
+	</div>
+	
+	<footer-comp> </footer-comp>
+
+</body>
+
+<script>
+	L.mapbox.accessToken = 
+	'pk.eyJ1IjoibmlsZWVtYXMiLCJhIjoiY2wwb2ZkYWhhMXB4aTNlcWtkdmczMXR0ZyJ9.Rc90WBEeE-0RuKafoFv_aA';
+
+    var map = L.mapbox.map('map')
+        .setView([42.36668858, -71.10600187], 16)
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+	// set bus stop markers on route 1//
+	let markers = setBusStopMarkers(busStops);
+	map.addLayer(markers);
+		
+		async function run(){
+			// Request bus data from MBTA  
+			const locations = await getBusLocations();
+
+			const length = locations.length;
+ 			for (var i = 0; i < length; i++) {		
+		
+				let locLat = (locations[i].attributes).latitude ;
+				let locLong = (locations[i].attributes).longitude ;
+				let busDirection = (locations[i].attributes).direction_id;
+				let busLabel = (locations[i].attributes).label;
+
+				if (busMarkers.length < length){
+					// function to make new marker for active buses //
+					let busMarkers = newMarker (locLat, locLong, busDirection, map) ;
+				}
+
+				//
+				if (locations.length == 0) return;
+				//
+				let lastStop = 'Massachusetts Ave @ Holyoke St';
+				if (busDirection == 1) lastStop = 'Nubian' ;
+
+				//testing
+				//console.log(length);
+				
+				//move bus marker	
+				busMarkers[i].setLatLng([locLat, locLong]).update() ;
+				busMarkers[i].bindPopup(`Bus: ${busLabel} Last Stop: ${lastStop}`) ;
+			}
+
+			// timer
+			setTimeout(run, 15000);
+		}
+	////
+	run();
+
+
+	function togglescreen() {
+		var elem = document.getElementById("map"); 
+		elem.classList.toggle("maptog");
+	}
+
+	function doFullScreen() {
+		/* View in fullscreen */
+		var elem = document.getElementById("map");
+
+		if (elem.requestFullscreen) {
+    		elem.requestFullscreen();
+  		} else if (elem.webkitRequestFullscreen) { /* Safari */
+    		elem.webkitRequestFullscreen();
+  		} else if (elem.msRequestFullscreen) { /* IE11 */
+    		elem.msRequestFullscreen();
+  		}
+	}
+	
+
+</script>
+
+
+</html>
