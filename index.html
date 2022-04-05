@@ -43,7 +43,29 @@ MarkerCluster.Default.css' rel='stylesheet' />
 				<span class="infoheader" style="color: #0ac2f0;">More to Know</span>
 			
 				<ul class="leftul">
-					<li class="leftli"><a href="#"> How to Use </a></li>
+					<li class="leftli">
+						<a href="javascript:myTogFunctionBT()"> How to Use </a>
+
+						<div class="popupBT" >                      
+      
+							<span class="popuptextBT" id="myPopupBT"> 
+							  <h5>How to Use Eye Exercise</h5>
+							  <div style="border-bottom: 2px black solid;"></div> 
+							 
+							  <ul style="margin:10px; padding:10px; text-align: justify;">
+								<li> Click the markers, to know the stop names </li>
+								<li> Click bus markers, to see the destination</li>
+								<li> Click button full screen, to open map in full screen </li>
+								<li> To exit full screen, press Esc </li>
+								<li> Click README option from left side bar, to open Readme file</li>
+								<li> Click Home option from left side bar, to go to Home page</li>
+								<li>To exit this popup, Click the button 'How to Use' again</li>
+							  </ul> 
+											 
+							</span>
+						</div>
+
+					</li>
 					<li class="leftli"><a href="../profile/index.html"> Home </a></li>
 					<li class="leftli"><a href="../bustracker/README.md"> GitHub ReadMe </a></li>
 					<li class="leftli"><a href="../bustracker/LICENSE"> License </a></li>
@@ -58,15 +80,26 @@ MarkerCluster.Default.css' rel='stylesheet' />
 			<div id='map' class="map"></div>
 
 			<div class="map-overlay top">
-				<button class="mapbutton" style="margin-left: 40px;">
-					Bus Tracker between MIT and Harvard</button>
-			
-				<button class="mapbutton" onclick="togglescreen();">
-					<span class="glyphicon glyphicon-resize-full"></span>Expand/ Reset Map 
-				</button>				
-				<button class="mapbutton" onclick="doFullScreen();">
-					<span class="glyphicon glyphicon-fullscreen"></span> Fullscreen  
-				</button>				
+
+				<div style="margin-left: 5%; padding: 2px; display: flex; flex: 1;
+						background-color:yellow; width:100%; height: 30px; border-bottom: 3px orange solid;">
+					<img  src="https://cdn.jsdelivr.net/gh/NileemaS/profile/bb.gif.gif" alt="Bounci
+								Balls GIF" style="border: 1px black solid;" >
+					<h5 style="font-family:cursive; color:black; text-align: center;">
+						Welcome to Real Time Bus Tracker between MIT and Harvard </h5>  
+
+					<span id="clockBT" style="border: 1px black solid; width:80px; margin: 5px;
+					          text-align: center; padding: 2px; height:20px"></span>
+					
+					<button style="width:100px; height:25px" onclick="togglescreen();">
+						<span class="glyphicon glyphicon-resize-full"></span>Expand 
+					</button>				
+					<button style="width:100px; height:25px" onclick="doFullScreen();">
+						<span class="glyphicon glyphicon-fullscreen"></span> Fullscreen  
+					</button>	
+					
+				</div>				
+				
 			</div>	
 				
 		</div>
@@ -150,6 +183,18 @@ MarkerCluster.Default.css' rel='stylesheet' />
   		}
 	}
 	
+	// how to use button click, open the popup
+	function myTogFunctionBT() {
+   		var popup = document.getElementById("myPopupBT");
+   		popup.classList.toggle("showBT");
+ 	}
+
+	 window.onload = displayClock();
+		function displayClock(){
+  			var display = new Date().toLocaleTimeString();
+  			document.getElementById("clockBT").innerHTML = display;
+  			setTimeout(displayClock, 1000); 
+		}
 
 </script>
 
