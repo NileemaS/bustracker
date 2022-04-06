@@ -2,8 +2,8 @@
 
 .map { 
     position:absolute;
-    height: 72%;
-    width: 68%;
+    height: 75%;
+    width: 67%;
 }
 
 .map-overlay {
@@ -53,7 +53,7 @@
     font-size: 20px;
     font-family: cursive;
     color: black;
-    margin-top: 30px;
+    margin-top: 35px;
 }
 
 /* home style css */
@@ -67,7 +67,6 @@ h1, h2{
   font-family: 'Shadows Into Light', cursive;    
 }
 
-
 .adsize {
   width: 100px;
   height: 100px;
@@ -75,14 +74,11 @@ h1, h2{
   margin: 5px;
 }
 
-div {
-  margin: 1px;
-}
 
 .divcenter {
   border-left: 1px solid blue;
   border-right: 1px solid blue;
-  padding: 5px;
+  padding: 2px;
 }
 
 .header {
@@ -222,6 +218,37 @@ body {font-family: "Lato", sans-serif;}
   to {opacity:1 ;}
 }
 
+/*ToolTip */
+.tooltipBT {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
 
+.tooltipBT .tooltiptextBT {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: small;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltipBT:hover .tooltiptextBT {
+  visibility: visible;
+}
+
+.btn-resize{
+  width:100px; 
+  height:22px; 
+  margin: 2px 5px;
+  font-size: small;
+  text-align: center;
+}
 
 

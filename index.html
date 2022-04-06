@@ -83,19 +83,22 @@ MarkerCluster.Default.css' rel='stylesheet' />
 
 				<div style="margin-left: 5%; padding: 2px; display: flex; flex: 1;
 						background-color:yellow; width:100%; height: 30px; border-bottom: 3px orange solid;">
-					<img  src="https://cdn.jsdelivr.net/gh/NileemaS/profile/bb.gif.gif" alt="Bounci
-								Balls GIF" style="border: 1px black solid;" >
-					<h5 style="font-family:cursive; color:black; text-align: center;">
+
+					<h5 style="font-family:cursive; color:black; text-align: center; 
+					       height: 22px; margin: 2px 5px;">
 						Welcome to Real Time Bus Tracker between MIT and Harvard </h5>  
 
-					<span id="clockBT" style="border: 1px black solid; width:80px; margin: 5px;
-					          text-align: center; padding: 2px; height:20px"></span>
+					<span id="clockBT" class="btn-resize" style="border: 2px black solid;"> </span>
 					
-					<button style="width:100px; height:25px" onclick="togglescreen();">
-						<span class="glyphicon glyphicon-resize-full"></span>Expand 
-					</button>				
-					<button style="width:100px; height:25px" onclick="doFullScreen();">
+					<button class="btn-resize tooltipBT" onclick="togglescreen();">
+						<span class="glyphicon glyphicon-resize-full"></span>Expand 					
+						<span class="tooltiptextBT">Toggle between Expand and Reset the screen
+						</span>							
+					</button>	
+
+					<button class="btn-resize tooltipBT" onclick="doFullScreen();" >
 						<span class="glyphicon glyphicon-fullscreen"></span> Fullscreen  
+						<span class="tooltiptextBT">View in full screen and use Esc to exit it</span>
 					</button>	
 					
 				</div>				

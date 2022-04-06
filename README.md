@@ -18,22 +18,26 @@
 
 ## Description:
 >
->Bus Tracker exercise uses map and real time bus tracking between MIT and Harvard. The map shows all 24 bus stops with the markers.
+>Bus Tracker exercise uses map and real time bus tracking between MIT and Harvard. The map shows all 24 bus stops with the markers with popups mentioning stop names.
 >
->It shows buses both directions with slightly different colors. All markers has a small popups to show the stop names and buses with the last stop.
+>It shows buses both directions with slightly different colors. Bus markers has popups to show the last stop names.
 >
->It has 2 buttons to resize the map. When its full size, please click Esc to exit the full size.
+>It has two buttons to resize the map. When its full size, please click Esc to exit the full size. Expand button works both ways, to expand and to reset the screen.
+> Left side bar has options like 'How to Use' the map, going back to home page, Readme for map Repositories and contacts.
+>Right side bar has ADs displayed.
+>Header has Menu, Title, Clock showing current time and search button to go to other repositores.
+>Footer has shortcut links for YouTube and Linkedin with links for other Repositories.
 
 
 ## README:
 >ReadMe is a developer's profile project, where they'll be able to create their own portfolio and maintain a blog for their knowledge.
 >
->This exercise is designed using display style Grid and developed using JavaScript, HTML and Bootstrap
+>This exercise is designed using display style Grid and developed using JavaScript, CSS, HTML and Bootstrap.
 >The main area plays Eye exercise.
 >
 >It has a header and footer developed using Bootstrap. 
->Header has more options to navigate to other Repositories, profile, Pacmen and bus tracker.
->Footer has the QR Code and list of projects quick links
+>Header has more options to navigate to other Repositories like profile, Pacmen and bus tracker.
+>Footer has the quick links for the contact and projects.
 >
 >It has left sidebar which contain animated buttons, 
 >
@@ -57,31 +61,14 @@
 >
 >To run this smoothly, need
 > index.html file and all the supporting files in the above list except README.md and LICENSE
-> Plus profileHeader.js, profileFooter.js and search.js files from profile repository
-> Images used in right side div "AD" from profile repository
+> Plus profileHeader.js, profileFooter.js and search.js files from the "profile" repository.
+> Also need Images used in right side div "AD" from profile repository
 > 
 > ### Fork a repo:
 >
 >A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project.
 > [How to Fork? Click here for the Instructions](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 >
-
-
-
-
-<!---
-<details><summary>CLICK ME</summary>
-<p>
-
-#### We can hide anything, even code!
-
-    ```ruby
-      puts "Hello World"
-    ```
-
-</p>
-</details>
---->
 
 
 
